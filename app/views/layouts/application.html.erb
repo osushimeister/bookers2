@@ -25,14 +25,13 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
-            <li class="nav-item">
-              <%= link_to "/", class: 'nav-link text-light' do %>
-                <i class="fa-solid fa-house"></i>
-                Home
-              <% end %>
-            </li>
-
             <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-house"></i>
+                  Home
+                <% end %>
+              </li>
 
               <li class="nav-item">
                 <%= link_to '/users', class: 'nav-link text-light' do %>
@@ -47,25 +46,37 @@
                   Books
                 <% end %>
               </li>
+
               <li class="nav-item">
                 <%= link_to destroy_user_session_path, method: :get, class: 'nav-link text-light' do %>
                   <i class="fas fa-sign-out-alt"></i>
                   Log out
                 <% end %>
               </li>
+
             <% else %>
+
+              <li class="nav-item">
+                <%= link_to root_path, class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-house"></i>
+                  Home
+                <% end %>
+              </li>
+
               <li class="nav-item">
                 <%= link_to home_about_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-link"></i>
                   About
                 <% end %>
               </li>
+
               <li class="nav-item">
                 <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-user-plus"></i>
                   Sign up
                 <% end %>
               </li>
+
               <li class="nav-item">
                 <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-sign-in-alt"></i>
@@ -79,6 +90,7 @@
       </nav>
     </header>
     <main class="mb-auto">
+    <%= flash[:notice] %>
     <%= yield %>
     </main>
       <footer>
