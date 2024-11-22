@@ -43,6 +43,7 @@ class BooksController < ApplicationController
     def show
         @book1 = Book.find(params[:id])
         @book = Book.new
+        @post_comment = PostComment.new
     end
 
     def destroy
